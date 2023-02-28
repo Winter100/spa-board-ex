@@ -1,0 +1,10 @@
+.numBtn:active {
+  background-color: tomato;
+}
+
+[aria-current] {
+  font-weight: bold;
+  cursor: revert;
+  transform: revert;
+  color: red;
+}

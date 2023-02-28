@@ -1,0 +1,42 @@
+.title {
+  margin: auto;
+  text-align: center;
+  border: 1px solid black;
+  width: 700px;
+  height: 60px;
+  margin-bottom: 30px;
+  border-radius: 7px;
+  margin-bottom: 0px;
+}
+
+.title h2 {
+  margin: 0px;
+  padding: 14px;
+}
+.item {
+  display: flex;
+  margin: auto;
+  width: 400px;
+  height: 60px;
+}
+
+.items {
+  margin: auto;
+  font-size: large;
+}
+
+.content {
+  margin: auto;
+  border: 1px solid gray;
+  width: 700px;
+  height: 400px;
+  border-radius: 5px;
+  overflow: auto;
+  white-space: pre-wrap;
+  padding: 10px;
+}
+
+.btn {
+  text-align: center;
+  margin-top: 10px;
+}

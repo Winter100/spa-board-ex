@@ -1,0 +1,35 @@
+.container {
+  margin: 5px;
+  text-align: center;
+}
+
+.title {
+  padding: 5px;
+  width: 700px;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.who {
+  margin: 10px;
+}
+.who input {
+  width: 130px;
+}
+
+.content {
+  margin: 10px;
+  padding: 10px;
+  width: 650px;
+  height: 400px;
+  resize: none;
+  border-radius: 5px;
+}

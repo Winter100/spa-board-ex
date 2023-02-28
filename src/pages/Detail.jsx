@@ -4,6 +4,7 @@ import Title from "../components/Title";
 import style from "./Detail.module.css";
 import { boardActions } from "../store/boardSlice";
 import { useEffect, useState } from "react";
+import { getUrl, putRemoveUrl } from "../url";
 
 const Detail = () => {
   const params = useParams();
@@ -18,9 +19,7 @@ const Detail = () => {
   useEffect(() => {
     const getFetch = async () => {
       try {
-        const res = await fetch(
-          "https://react-spa-board-default-rtdb.firebaseio.com/boarditem.json"
-        );
+        const res = await fetch(getUrl);
 
         if (!res.ok) {
           throw new Error("디테일페이지 에러");
@@ -34,8 +33,6 @@ const Detail = () => {
             findItem = value;
           }
         }
-
-        // const item = Object.values(data).find((item) => item.id === params.id);
 
         setTitle(findItem.title);
         setContents(findItem.contents);
@@ -54,12 +51,9 @@ const Detail = () => {
 
   const ovRemoveHandler = (key) => {
     const removeFetch = async () => {
-      await fetch(
-        `https://react-spa-board-default-rtdb.firebaseio.com/boarditem/${key}.json`,
-        {
-          method: "DELETE",
-        }
-      );
+      await fetch(putRemoveUrl(key), {
+        method: "DELETE",
+      });
       dispatch(boardActions.removerItem(params.id));
       navigation("/", { replace: true });
     };

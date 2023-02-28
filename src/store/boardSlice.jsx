@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { getUrl } from "../url";
 
 const BoardItem = {
   board: [],
   status: "",
 };
 
-const url =
-  "https://react-spa-board-default-rtdb.firebaseio.com/boarditem.json";
+const url = getUrl;
 
 const asyncGetItemList = createAsyncThunk(
   "getItem/asyncGetItemList",
@@ -14,23 +14,6 @@ const asyncGetItemList = createAsyncThunk(
     const res = await fetch(url);
     const data = await res.json();
     return data;
-  }
-);
-
-const asyncPostItemList = createAsyncThunk(
-  "postItem/asyncPostItemList",
-  async (item) => {
-    await fetch(url, {
-      method: "POST",
-      body: JSON.stringify({
-        id: item.id,
-        title: item.title,
-        created: item.created,
-        contents: item.contents,
-        password: item.password,
-        author: item.author,
-      }),
-    });
   }
 );
 
@@ -66,19 +49,10 @@ const boardItemSlice = createSlice({
     builder.addCase(asyncGetItemList.rejected, (state, action) => {
       state.status = "Faild";
     });
-    builder.addCase(asyncPostItemList.pending, (state, action) => {
-      state.status = "Loading";
-    });
-    builder.addCase(asyncPostItemList.fulfilled, (state, action) => {
-      state.status = "Complete";
-    });
-    builder.addCase(asyncPostItemList.rejected, (state, action) => {
-      state.status = "Faild";
-    });
   },
 });
 
 export const boardActions = boardItemSlice.actions;
-export { asyncGetItemList, asyncPostItemList };
+export { asyncGetItemList };
 
 export default boardItemSlice;

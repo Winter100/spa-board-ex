@@ -5,6 +5,7 @@ import style from "./WritePage.module.css";
 import { boardActions } from "../store/boardSlice";
 import { useNavigate } from "react-router-dom";
 import uuid from "react-uuid";
+import { getUrl } from "../url";
 
 const WritePage = () => {
   const navigation = useNavigate();
@@ -55,15 +56,11 @@ const WritePage = () => {
       password: passwordValue,
     };
 
-    fetch(
-      "https://react-spa-board-default-rtdb.firebaseio.com/boarditem.json",
-      {
-        method: "POST",
-        body: JSON.stringify(addItem),
-      }
-    );
+    fetch(getUrl, {
+      method: "POST",
+      body: JSON.stringify(addItem),
+    });
 
-    // dispatch(asyncPostItemList(addItem));
     dispatch(boardActions.setItem(addItem));
     navigation("/");
   };

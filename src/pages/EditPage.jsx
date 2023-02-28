@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Title from "../components/Title";
 import { boardActions } from "../store/boardSlice";
 import style from "./EditPage.module.css";
+import { getUrl, putRemoveUrl } from "../url";
 
 const EditPage = () => {
   const [title, setTitle] = useState("");
@@ -23,9 +24,7 @@ const EditPage = () => {
   useEffect(() => {
     const fetchItem = async () => {
       try {
-        const res = await fetch(
-          "https://react-spa-board-default-rtdb.firebaseio.com/boarditem.json"
-        );
+        const res = await fetch(getUrl);
 
         if (!res.ok) {
           throw new Error("에러발생");
@@ -69,13 +68,10 @@ const EditPage = () => {
       created: created,
     };
 
-    fetch(
-      `https://react-spa-board-default-rtdb.firebaseio.com/boarditem/${key}.json`,
-      {
-        method: "PUT",
-        body: JSON.stringify(addItem),
-      }
-    );
+    fetch(putRemoveUrl(key), {
+      method: "PUT",
+      body: JSON.stringify(addItem),
+    });
 
     dispatch(boardActions.editItem(addItem));
     navigation("/");

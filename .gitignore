@@ -5,6 +5,10 @@
 /.pnp
 .pnp.js
 
+#url.js는 파이어베이스 주소를 가지고있음
+url.js
+
+
 # testing
 /coverage
 
